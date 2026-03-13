@@ -58,6 +58,5 @@ When using NetworkDriverTool:
 
 For security-related questions or concerns:
 - Email: MrAmirRezaie80@gmail.com
-- PGP Key: [Link to PGP key if available]
 
 Thank you for helping keep NetworkDriverTool secure! 🛡️
