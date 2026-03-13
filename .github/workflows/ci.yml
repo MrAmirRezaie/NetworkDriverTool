@@ -13,11 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v1
-      with:
-        pwsh: true
-
     - name: Install dependencies
       run: |
         Install-Module -Name Pester -Force -Scope CurrentUser -SkipPublisherCheck
