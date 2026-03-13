@@ -43,7 +43,7 @@ jobs:
     - name: Run tests
       run: |
         # Run tests in a way that doesn't require admin privileges
-        Invoke-Pester -Path .\test.ps1 -Output 'NUnitXml' -OutputFile TestResults.xml -PassThru
+        Invoke-Pester -Path .\test.ps1 -OutputFormat 'NUnitXml' -OutputFile TestResults.xml -PassThru
 
     - name: Test Docker build
       run: |
