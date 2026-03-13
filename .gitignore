@@ -1,0 +1,40 @@
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# PowerShell
+*.ps1xml
+*.clixml
+*.psc1
+
+# Cache files
+driver_cache.json
+
+# Config (user-specific, optional ignore)
+# config.json
+
+# Backup directory
+DriverBackup/
+
+# Performance logs
+performance.log
+
+# Predictions
+predictions.xml
+
+# Compliance reports
+compliance_report.json
+
+# Encrypted logs
+*.encrypted
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Test results
+TestResults.xml

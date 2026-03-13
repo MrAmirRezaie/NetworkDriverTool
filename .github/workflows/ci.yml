@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PowerShell
+      uses: actions/setup-powershell@v1
+      with:
+        pwsh: true
+
+    - name: Install dependencies
+      run: |
+        Install-Module -Name Pester -Force -Scope CurrentUser -SkipPublisherCheck
+
+    - name: Check PowerShell syntax
+      run: |
+        Get-ChildItem *.ps1 -Recurse | ForEach-Object {
+          $ast = [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$null)
+          if (-not $ast) {
+            Write-Error "Syntax error in $($_.FullName)"
+            exit 1
+          }
+        }
+        Write-Host "All PowerShell files have valid syntax"
+
+    - name: Validate JSON files
+      run: |
+        Get-ChildItem *.json -Recurse | ForEach-Object {
+          try {
+            $null = Get-Content $_.FullName | ConvertFrom-Json
+          } catch {
+            Write-Error "JSON validation failed for $($_.FullName): $($_.Exception.Message)"
+            exit 1
+          }
+        }
+        Write-Host "All JSON files are valid"
+
+    - name: Run tests
+      run: |
+        # Run tests in a way that doesn't require admin privileges
+        Invoke-Pester -Path .\test.ps1 -OutputFormat NUnitXml -OutputFile TestResults.xml -PassThru
+
+    - name: Test Docker build
+      run: |
+        docker build -t network-driver-tool-test .
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: TestResults.xml

@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  driver-tool:
+    build: .
+    ports:
+      - "8080:8080"  # API
+      - "8081:8081"  # Dashboard
+    volumes:
+      - ./logs:/app/logs:rw
+      - ./backups:/app/DriverBackup:rw
+      - ./data:/app/data:rw
+    environment:
+      - TZ=UTC
+      - POWERSHELL_TELEMETRY_OPTOUT=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pwsh", "-Command", "& { try { $response = Invoke-WebRequest -Uri http://localhost:8080/health -TimeoutSec 10; if ($response.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 } }"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    command: ["-File", "NetworkDriverTool.ps1", "-Api", "-Dashboard"]
