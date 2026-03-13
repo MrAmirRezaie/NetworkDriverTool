@@ -2,39 +2,107 @@
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
 
 # PowerShell
 *.ps1xml
 *.clixml
 *.psc1
+*.ps1~
+*.psm1~
+*.psd1~
+*.pssc
+
+# Logs
+*.log
+logs/
+NetworkDriverTool.log
+performance.log
+
+# Test Results
+TestResults.xml
+test-results/
+*.test.xml
+*.trx
+
+# Backups
+DriverBackup/
+*.bak
+*.backup
 
 # Cache files
 driver_cache.json
+*.cache
+.cache/
 
 # Config (user-specific, optional ignore)
 # config.json
 
-# Backup directory
-DriverBackup/
-
-# Performance logs
-performance.log
-
-# Predictions
-predictions.xml
-
-# Compliance reports
-compliance_report.json
-
-# Encrypted logs
-*.encrypted
-
-# Logs
-*.log
+# Data
+data/
+*.db
+*.sqlite
+*.sqlite3
 
 # Temporary files
 *.tmp
 *.temp
+temp/
+tmp/
 
-# Test results
-TestResults.xml
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Package files
+*.nupkg
+packages/
+
+# Node.js (if any)
+node_modules/
+npm-debug.log*
+
+# Docker
+.dockerignore
+
+# Secrets and config
+secrets.json
+config.local.json
+*.key
+*.pem
+*.crt
+
+# Build artifacts
+build/
+dist/
+*.exe
+*.msi
+*.dll
+
+# Predictions and reports
+predictions.xml
+compliance_report.json
+*.encrypted
+*.report
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/workflows/*.log
