@@ -10,6 +10,8 @@ We actively support the following versions with security updates:
 | 1.x.x   | :x:                |
 | < 1.0   | :x:                |
 
+
+
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability in NetworkDriverTool, please help us by reporting it responsibly.
